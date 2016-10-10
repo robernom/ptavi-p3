@@ -51,9 +51,9 @@ if __name__ == "__main__":
         fichero = sys.argv[1]
     except NameError:
         sys.exit("Usage: Python karaoke.py file.smil")
-    karaobject = KaraokeLocal(fichero)
-    print(karaobject)
-    karaobject.to_json(fichero[:-5])
-    karaobject.do_local()
-    karaobject.to_json("local")
-    print(karaobject)
+    karaoo = KaraokeLocal(fichero)
+    print(karaoo)
+    karaoo.to_json(fichero[:-5])
+    karaoo.do_local()
+    karaoo.to_json("local")
+    print(karaoo)
