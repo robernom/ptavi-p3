@@ -6,12 +6,15 @@ import json
 from smallsmilhandler import SmallSMILHandler
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+from urllib.request import urlretrieve
 
 
 if __name__ == "__main__":
     parser = make_parser()
     prueba = SmallSMILHandler()
     parser.setContentHandler(prueba)
+    urls = []
+    locales = []
     try:
         parser.parse(open(sys.argv[1]))
     except:
@@ -24,8 +27,15 @@ if __name__ == "__main__":
             for atr in element[tag]:
                 for val in atr:
                     strExit += "\t" + val + "=" + "\"" + atr[val] + "\""
+                    if val == "src":
+                        urls.append(atr[val])
         strExit += "\n"
     print(strExit)
     with open(sys.argv[1][:-5] + ".json", 'w') as doc_json:
-        lista_json = json.dumps(lista)
-        json.dump(lista_json, doc_json)
+        json.dump(lista, doc_json, indent=4,separators=(',',': ')) 
+    for url in urls:
+        if url[0:7] == "http://":
+            prueba = urlretrieve(url)
+            locales.append(url.split('/')[-1])
+    for element in locales:
+        print(element)
