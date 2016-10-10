@@ -46,7 +46,6 @@ class KaraokeLocal():
                                 urlretrieve(atr[val])
                             atr[val] = atr[val].split('/')[-1]
 
-
 if __name__ == "__main__":
     try:
         fichero = sys.argv[1]
