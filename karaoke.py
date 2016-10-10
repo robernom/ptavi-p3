@@ -49,7 +49,7 @@ class KaraokeLocal():
 if __name__ == "__main__":
     try:
         fichero = sys.argv[1]
-    except NameError:
+    except:
         sys.exit("Usage: Python karaoke.py file.smil")
     karaoo = KaraokeLocal(fichero)
     print(karaoo)
